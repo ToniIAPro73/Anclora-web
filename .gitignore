@@ -1,0 +1,20 @@
+# Archivos del entorno
+.env
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Node / Build
+node_modules/
+dist/
+build/
+
+# Archivos temporales
+*.log
+*.swp
+*.swo
+*.tmp
+
+# VSCode
+.vscode/
