@@ -1,42 +1,69 @@
-# ANCLORA
+# 🧭 Anclora – Your Anchor for Productivity
 
-**ANCLORA** es una aplicación web diseñada para ayudarte a organizar tus días mediante "anclajes": tareas y eventos con una estética náutica, una interfaz moderna, animaciones atractivas y una experiencia de usuario fluida.
+![Open Source MIT Badge](assets/open-source-mit-badge.png)
 
-## 🌟 Características
+Anclora is a modern, interactive web app to help you visually organize your tasks with animations, colors and smart categories.
 
-- Interfaz moderna con Tailwind CSS y tipografía Inter.
-- Animación dinámica de fondo y slogan.
-- Sistema de tareas y eventos (anclajes) organizados por fecha y prioridad.
-- Edición, reutilización y eliminación de anclajes.
-- Notificaciones configurables por fecha y hora.
-- Animación visual al crear nuevos anclajes.
-- Animación de completado con efecto visual de validación.
+---
 
-## 🚀 Tecnologías
+## 🧩 Key Features
 
-- HTML5
-- Tailwind CSS (CDN)
-- JavaScript puro
-- Fuentes Google (Inter)
+- 🎨 Animated gradient background
+- ✍️ Create custom “anchors” with date, time and priority
+- 🕒 Auto-grouped by Today / Tomorrow / This Week / Upcoming
+- 🚦 Priority color badges: Urgent / Important / Normal
+- ✅ Visual animation + sound when completing tasks
+- 📱 Responsive UI optimized for mobile & desktop
 
-## 📦 Estructura del proyecto
+---
 
+## 🚀 How to Deploy
+
+### 1. Download the package  
+[anclora-web-final.zip](link-to-your-release)
+
+### 2. GitHub Pages (static hosting)
+- Create a new repo (e.g. `anclora-web`)
+- Upload all contents from the `.zip`
+- Go to **Settings > Pages**
+- Choose `main` branch, folder `/ (root)`
+
+Your app will be live at:
 ```
-├── index.html
-├── assets/
-│   ├── ancla-realista.svg
-│   └── burbujas.svg
-├── LICENSE
-└── .gitignore
+https://yourusername.github.io/anclora-web/
 ```
 
-## 📂 Uso
+---
 
-Abre `index.html` en tu navegador para empezar a utilizar ANCLORA.
+## 📎 Included Files
 
-## ✨ Próximas mejoras
+- `index.html`
+- `assets/ancla-animacion.png`
+- `assets/success-chime.mp3`
+- `assets/preview.png`
+- `assets/infografia-anclora.png`
+- `assets/favicon.png`
+- `assets/open-source-mit-badge.png`
 
-- Persistencia de datos (localStorage o backend).
-- Exportación/importación de anclajes.
-- Integración con calendarios externos.
-- Modo oscuro automático.
+---
+
+## 📥 Extra Resources
+
+- `Anclora-Presentacion.pdf` (infographic)
+- `SECURITY_CHECKLIST.md`
+- `LICENSE.md` (MIT License)
+- `scripts/*.sh` and `*.bat` for automation
+
+---
+
+## 💡 Use Cases
+
+- Personal productivity app
+- Teaching or portfolio project
+- GitHub Pages showcase
+- MVP or microproduct base
+
+---
+
+Feel free to fork, clone, or remix.  
+**MIT Licensed. Enjoy.**
