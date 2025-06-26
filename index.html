@@ -18,13 +18,22 @@
       padding: 3rem 2rem 1rem;
     }
     .logo {
-      max-width: 120px;
+      max-width: 160px;
       margin-bottom: 1.5rem;
+      animation: floatLogo 4s ease-in-out infinite;
+      transition: transform 0.3s ease;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
+    .logo:hover {
+      transform: scale(1.05);
+    }
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
     p.subtitle {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 2rem;
     }
     .cta {
