@@ -12,158 +12,86 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <style>
-        /* Estilos personalizados y configuración de Tailwind */
-
-@keyframes float-bubble {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(-100px) scale(1.1);
-        opacity: 0.3;
+/* Fondo animado mejorado con transiciones más perceptibles */
+#animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(-45deg, #0093E9, #80D0C7, #7EE8FA, #EEC0C6);
+    background-size: 600% 600%;
+    animation: gradientShift 20s ease infinite;
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+.slogan-animated {
+    font-weight: 500;
+    background: linear-gradient(-45deg, #0093E9, #80D0C7, #7EE8FA, #EEC0C6);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    animation: gradientShift 20s ease infinite;
+}
+#animation-overlay {
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+}
+#anchor-container {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: drop-container 2s ease-in forwards;
+}
+@keyframes drop-container {
+    to {
+        top: 30%;
     }
 }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: transparent;
-        }
-
-        #animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #0093E9, #80D0C7);
-            background-size: 400% 400%;
-            animation: gradientAnimation 25s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .slogan-animated {
-            font-weight: 500;
-            background: linear-gradient(135deg, #0093E9, #80D0C7);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: sloganColorAnimation 25s ease infinite;
-        }
-
-        @keyframes sloganColorAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* --- ESTILOS PARA LA ANIMACIÓN CSS --- */
-        #animation-overlay {
-            z-index: 50;
-        }
-        .is-animating {
-            display: flex;
-        }
-
-        #anchor-container {
-            position: absolute;
-            top: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 5px;
-            height: 150vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .is-animating #anchor-container {
-            animation: drop-container 2s ease-in forwards;
-        }
-
-        @keyframes drop-container {
-            to {
-                top: 0;
-            }
-        }
-
-        #dropping-anchor {
-            position: absolute;
-            bottom: 0;
-            font-size: 8rem;
-            color: white;
-            transform-origin: center top;
-            animation: swing-anchor 2s ease-in-out;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
-        }
-
-        @keyframes swing-anchor {
-            0%, 100% { transform: rotate(0deg); }
-            20% { transform: rotate(15deg); }
-            60% { transform: rotate(-10deg); }
-            80% { transform: rotate(5deg); }
-        }
-
-        .bubble {
-            position: absolute;
-            background: linear-gradient(135deg, #0093E9, #80D0C7); box-shadow: 0 0 4px rgba(255,255,255,0.4);
-            border-radius: 50%;
-            bottom: -50px;
-            animation: rise 4s ease-in-out infinite;
-        }
-
-        @keyframes rise {
-            to {
-                transform: translateY(-100vh) scale(0.5);
-                opacity: 0;
-            }
-        }
-        
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #3b82f6;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #3b82f6;
-        }
-        
-        #sidebar-content::-webkit-scrollbar {
-            display: none;
-        }
-        #sidebar-content {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .toast-notification {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 20px;
-            border-radius: 8px;
-            background-color: #ef4444;
-            color: white;
-            font-weight: 500;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            opacity: 0;
-            transition: opacity 0.3s ease, bottom 0.3s ease;
-        }
-
-        .toast-notification.show {
-            opacity: 1;
-            bottom: 30px;
-        }
-    </style>
-<link href="assets/favicon.png" rel="icon" type="image/png"/></head>
+#dropping-anchor img {
+    content: url("assets/ancla-animacion.png");
+    animation: swing-anchor 2s ease-in-out;
+    width: 6rem;
+    height: 6rem;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+@keyframes swing-anchor {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(15deg); }
+    60% { transform: rotate(-10deg); }
+    80% { transform: rotate(5deg); }
+}
+.bubble {
+    position: absolute;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    animation: rise 4s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+@keyframes rise {
+    to {
+        transform: translateY(-100vh) scale(0.6);
+        opacity: 0;
+    }
+}
+</style>
+</head>
 <body class="bg-transparent">
 <!-- Fondo animado -->
 <div id="animated-bg"></div>
