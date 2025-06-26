@@ -1,20 +1,18 @@
-# Archivos del entorno
-.env
+# Archivos y carpetas a ignorar
 
-# Sistema operativo
+# Node.js / JavaScript
+node_modules/
+dist/
+npm-debug.log*
+
+# Archivos comunes del sistema
 .DS_Store
 Thumbs.db
 
-# Node / Build
-node_modules/
-dist/
-build/
-
-# Archivos temporales
+# Archivos de entorno y config sensibles
+.env
+*.env
 *.log
-*.swp
-*.swo
-*.tmp
 
-# VSCode
+# Archivos temporales de VS Code
 .vscode/
