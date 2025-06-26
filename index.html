@@ -15,12 +15,11 @@
       text-align: center;
     }
     header {
-      padding: 4rem 2rem 2rem;
+      padding: 3rem 2rem 1rem;
     }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
+    .logo {
+      max-width: 100px;
+      margin-bottom: 1.2rem;
     }
     p.subtitle {
       font-size: 1.2rem;
@@ -52,24 +51,28 @@
       max-width: 280px;
       text-align: left;
     }
+    .badge {
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+    .badge img {
+      height: 24px;
+      opacity: 0.9;
+    }
     footer {
       font-size: 0.9rem;
       opacity: 0.7;
       margin: 4rem 0 2rem;
     }
-    img.badge {
-      width: 150px;
-      margin-top: 1rem;
-    }
   </style>
 </head>
 <body>
   <header>
-    <h1>ANCLORA</h1>
+    <img src="assets/Logo_4.png" alt="Logo Anclora" class="logo" />
     <p class="subtitle">Tu Ancla para la Productividad</p>
-    <a href="index.html" class="cta">Lanzar Aplicación</a>
-    <div>
-      <img src="assets/open-source-mit-badge.png" alt="MIT Badge" class="badge" />
+    <a href="anclora.html" class="cta">Lanzar Aplicación</a>
+    <div class="badge">
+      <img src="assets/open-source-mit-badge.png" alt="MIT Badge" />
     </div>
   </header>
 
