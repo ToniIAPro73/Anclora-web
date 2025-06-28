@@ -16,7 +16,6 @@
       text-align: center;
       padding: 3rem 1rem 2rem;
       position: relative;
-      overflow: hidden;
     }
     .logo-container video {
       width: 140px;
@@ -29,7 +28,6 @@
       font-weight: 700;
     }
     p.subtitle {
-      font-family: 'Inter', sans-serif;
       font-size: 1.25rem;
       margin: 0.5rem 0 2rem;
       color: #2a4d6f;
@@ -43,51 +41,18 @@
       font-weight: 600;
       text-decoration: none;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .cta:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    }
-    .wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 200%;
-      height: 160px;
-      background-repeat: repeat-x;
-      background-size: contain;
-      opacity: 0.7;
-    }
-    .wave1 {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e1/Wave_line_1.svg');
-      animation: wave 10s linear infinite;
-      z-index: 1;
-    }
-    .wave2 {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/02/Wave_line_2.svg');
-      animation: wave 14s linear infinite reverse;
-      bottom: 10px;
-      z-index: 0;
-    }
-    @keyframes wave {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
     }
     section {
       padding: 4rem 1rem;
       text-align: center;
-      position: relative;
-      z-index: 2;
     }
     .benefits, .testimonials, .faq, .contact {
-      background: linear-gradient(120deg, #ffffff, #f2fbff);
+      background: #f2fbff;
       margin: 2rem auto;
-      padding: 2.5rem 1.5rem;
-      border-radius: 20px;
+      padding: 2rem;
+      border-radius: 16px;
       max-width: 800px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      color: #2b3d4f;
     }
     footer {
       text-align: center;
@@ -101,15 +66,13 @@
   <header>
     <div class="logo-container">
       <video autoplay muted loop playsinline>
-        <source src="assets/Logo_Anclora_mejorado.mp4" type="video/mp4">
+        <source src="assets/Logo_Anclora_mejorado.mp4" type="video/mp4" />
         Tu navegador no soporta video.
       </video>
     </div>
     <h1>Anclora</h1>
     <p class="subtitle">Tu Ancla para la Productividad</p>
     <a href="anclora.html" class="cta">Probar Anclora</a>
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
   </header>
 
   <section class="benefits">
@@ -119,19 +82,7 @@
 
   <section class="testimonials">
     <h2>Testimonios</h2>
-    <p><em>“Desde que uso Anclora, mis mañanas son más ligeras y mis días más productivos.”</em> – Laura P.<br>
-    <em>“Es elegante, rápido y sin ruido. Como debe ser la productividad.”</em> – Marcos G.</p>
-  </section>
-
-  <section class="faq">
-    <h2>Preguntas Frecuentes</h2>
-    <p><strong>¿Es Anclora gratis?</strong> Sí, puedes usar la versión básica sin coste.<br>
-    <strong>¿Necesito instalar algo?</strong> No, es 100% web.</p>
-  </section>
-
-  <section class="contact">
-    <h2>Contacto</h2>
-    <p>¿Tienes dudas o propuestas? Escríbenos a <a href="mailto:hola@anclora.app">hola@anclora.app</a></p>
+    <p><em>“Desde que uso Anclora, mis mañanas son más ligeras y mis días más productivos.”</em> – Laura P.</p>
   </section>
 
   <footer>
