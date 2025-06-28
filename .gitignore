@@ -1,18 +1,8 @@
-# Archivos y carpetas a ignorar
-
-# Node.js / JavaScript
+# Node modules
 node_modules/
 dist/
-npm-debug.log*
-
-# Archivos comunes del sistema
 .DS_Store
-Thumbs.db
-
-# Archivos de entorno y config sensibles
-.env
-*.env
 *.log
-
-# Archivos temporales de VS Code
-.vscode/
+.env
+assets/*.psd
+assets/*.ai
