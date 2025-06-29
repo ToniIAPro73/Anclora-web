@@ -72,3 +72,8 @@ chmod +x scripts/setup_gh_push_anclora.sh
 ---
 
 © 2025 Anclora · Desarrollado para productividad tranquila.
+
+# Actualizaciones incluidas
+- Nuevos módulos en /scripts
+- Tests unitarios y de integración
+- CI/CD workflows
