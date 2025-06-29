@@ -1,85 +1,63 @@
-# ⚓ Anclora – Tu Ancla para la Productividad
+# 🌊 Anclora – Tu Ancla para la Productividad
 
-![Preview](assets/anclora-preview.png)
-
-<p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" />
-  <img src="https://img.shields.io/badge/status-en%20desarrollo-green.svg" />
-  <img src="https://img.shields.io/badge/versión-1.0-blueviolet" />
-</p>
+Bienvenido al repositorio de **Anclora**, una aplicación web minimalista centrada en ayudarte a mantener el foco y estructurar tu día con serenidad y claridad.
 
 ---
 
-## 🔗 Accesos rápidos
+## 🚀 ¿Qué incluye este proyecto?
 
-<p align="center">
-  <a href="https://<tu-usuario>.github.io/Anclora-web/" target="_blank">
-    <strong>🌐 Ver landing</strong>
-  </a>
-  &nbsp; &nbsp;
-  <a href="https://<tu-usuario>.github.io/Anclora-web/anclora.html" target="_blank">
-    <strong>🚀 Lanzar aplicación</strong>
-  </a>
-</p>
+- `index.html` – Landing page con animaciones y CTA
+- `assets/Logo_Anclora_mejorado.mp4` – Logo animado de apertura
+- `assets/logo_static.png` – Imagen fallback para el logo animado
+- Estilo visual moderno y responsivo
+- Preparado para GitHub Pages
 
 ---
 
-## 🧠 ¿Qué es Anclora?
+## 📸 Vista previa
 
-**Anclora** es una aplicación web visual, intuitiva y 100% online que te permite organizar tu jornada como si navegaras el día con un rumbo claro.
-
-- 🌊 Inspiración marítima
-- 🎥 Logo animado y olas dinámicas
-- 💻 Totalmente responsiva
-- ☁️ Sin instalaciones
+![preview](assets/logo_static.png)
 
 ---
 
-## ⚙️ Funcionalidades clave
+## 🔧 Cómo desplegar
 
-| Característica        | Detalle                                                       |
-|------------------------|---------------------------------------------------------------|
-| 🎨 Diseño visual       | Animaciones suaves, UI clara y moderna                        |
-| ⚓ Hero con logo animado | Video o imagen representando la marca flotando en olas         |
-| 📱 Compatibilidad      | Desktop y móvil, retina-ready                                 |
-| 💬 Testimonios         | Opiniones de usuarios simuladas para credibilidad             |
-| 📥 Contacto            | Correo directo a hola@anclora.app                             |
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/tuusuario/Anclora-web.git
+   ```
 
----
+2. Sube los archivos a la rama `main` o `gh-pages` de GitHub.
 
-## 📁 Estructura del proyecto
+3. Activa GitHub Pages en:
+   `Settings → Pages → Source → Branch: main → /root`
 
-```
-Anclora-web/
-├── index.html                  # Landing principal
-├── anclora.html                # App de tareas
-├── assets/
-│   └── anclora-preview.png     # Imagen promocional
-├── LICENSE
-├── README.md
-├── README_EN.md
-└── .gitignore
-```
+4. Visita:
+   ```
+   https://tuusuario.github.io/Anclora-web/
+   ```
 
 ---
 
-## 📦 Despliegue con GitHub Pages
+## 🧩 Tecnologías
 
-1. Crea un repo público (ej. `Anclora-web`)
-2. Sube el contenido del zip
-3. Activa Pages desde rama `main` y carpeta `/`
-4. Abre el enlace generado
-
----
-
-## 🤝 Contribuye
-
-Si tienes ideas, sugerencias o mejoras: ¡estás invitado a colaborar!
+- HTML5
+- CSS3 con estilos embebidos
+- SVG animado (ondas)
+- Video embebido (MP4)
+- Fallback con `poster` para UX mejorada
 
 ---
 
-## 🧾 Licencia
+## 📬 Contacto
 
-Distribuido bajo [MIT License](LICENSE).
+¿Tienes sugerencias, ideas o quieres colaborar?
+
+✉️ hola@anclora.app  
+🌐 [www.anclora.app](https://www.anclora.app)
 
 ---
+
+## 📄 Licencia
+
+Este proyecto está bajo licencia MIT. ¡Úsalo, modifícalo y hazlo crecer! 🌱
