@@ -1,8 +1,4 @@
-# Node modules
+*.DS_Store
 node_modules/
 dist/
-.DS_Store
-*.log
 .env
-assets/*.psd
-assets/*.ai
