@@ -1,92 +1,898 @@
-
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Anclora – Tu Ancla para la Productividad</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #b0e0f3, #0093e9);
-      color: #1f3b57;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Anclora</title>
+<!-- Tailwind CSS v3 Play CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Estilos personalizados y configuración de Tailwind */
+
+@keyframes float-bubble {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
     }
-    header {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-      position: relative;
+    100% {
+        transform: translateY(-100px) scale(1.1);
+        opacity: 0.3;
     }
-    .logo-container video {
-      width: 140px;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-top: 1rem;
-      font-weight: 700;
-    }
-    p.subtitle {
-      font-size: 1.25rem;
-      margin: 0.5rem 0 2rem;
-      color: #2a4d6f;
-    }
-    .cta {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      background: white;
-      color: #0093e9;
-      border-radius: 9999px;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    section {
-      padding: 4rem 1rem;
-      text-align: center;
-    }
-    .benefits, .testimonials, .faq, .contact {
-      background: #f2fbff;
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 16px;
-      max-width: 800px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.875rem;
-      color: rgba(255, 255, 255, 0.6);
-    }
-  </style>
+}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
+        }
+
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0093E9, #80D0C7);
+            background-size: 400% 400%;
+            animation: gradientAnimation 25s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .slogan-animated {
+            font-weight: 500;
+            background: linear-gradient(135deg, #0093E9, #80D0C7);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: sloganColorAnimation 25s ease infinite;
+        }
+
+        @keyframes sloganColorAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* --- ESTILOS PARA LA ANIMACIÓN CSS --- */
+        #animation-overlay {
+            z-index: 50;
+        }
+        .is-animating {
+            display: flex;
+        }
+
+        #anchor-container {
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 150vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .is-animating #anchor-container {
+            animation: drop-container 2s ease-in forwards;
+        }
+
+        @keyframes drop-container {
+            to {
+                top: 0;
+            }
+        }
+
+        #dropping-anchor {
+            position: absolute;
+            bottom: 0;
+            font-size: 8rem;
+            color: white;
+            transform-origin: center top;
+            animation: swing-anchor 2s ease-in-out;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        @keyframes swing-anchor {
+            0%, 100% { transform: rotate(0deg); }
+            20% { transform: rotate(15deg); }
+            60% { transform: rotate(-10deg); }
+            80% { transform: rotate(5deg); }
+        }
+
+        .bubble {
+            position: absolute;
+            background: linear-gradient(135deg, #0093E9, #80D0C7); box-shadow: 0 0 4px rgba(255,255,255,0.4);
+            border-radius: 50%;
+            bottom: -50px;
+            animation: rise 4s ease-in-out infinite;
+        }
+
+        @keyframes rise {
+            to {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #3b82f6;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #3b82f6;
+        }
+        
+        #sidebar-content::-webkit-scrollbar {
+            display: none;
+        }
+        #sidebar-content {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 20px;
+            border-radius: 8px;
+            background-color: #ef4444;
+            color: white;
+            font-weight: 500;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease, bottom 0.3s ease;
+        }
+
+        .toast-notification.show {
+            opacity: 1;
+            bottom: 30px;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="logo-container">
-      <video autoplay muted loop playsinline>
-        <source src="assets/Logo_Anclora_mejorado.mp4" type="video/mp4" />
-        Tu navegador no soporta video.
-      </video>
-    </div>
-    <h1>Anclora</h1>
-    <p class="subtitle">Tu Ancla para la Productividad</p>
-    <a href="anclora.html" class="cta">Probar Anclora</a>
-  </header>
+<body class="bg-transparent">
+<!-- Fondo animado -->
+<div id="animated-bg"></div>
+<!-- ===== Animación de Ancla ===== -->
+<div class="fixed inset-0 bg-blue-500/30 backdrop-blur-sm hidden items-center justify-center overflow-hidden" id="animation-overlay">
+<div id="anchor-container"><div id="dropping-anchor"><img alt="Ancla realista" class="w-24 h-24" src="assets/ancla-realista.svg"/></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center" id="bubbles-container">
+<img alt="Burbujas animadas" class="w-full h-full object-cover pointer-events-none" src="assets/burbujas.svg" style="animation: float-bubble 6s ease-in-out infinite; mix-blend-mode: screen; filter: blur(1px) brightness(1.2); opacity: 0.6;">
+</img></div>
+</div>
+<!-- ===== Contenedor Principal ===== -->
+<div class="max-w-4xl mx-auto" id="app-container">
+<!-- ===== Encabezado con Logo ===== -->
+<header class="p-6 flex flex-col items-center">
+<!-- Logo SVG que imita el diseño proporcionado -->
+<svg class="mb-2" height="60" viewbox="0 0 100 100" width="60">
+<defs>
+<lineargradient id="logo-gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#14b8a6;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<path d="M50 8 C 61.045695 8 70 16.954305 70 28 C 70 39.045695 61.045695 48 50 48 C 38.954305 48 30 39.045695 30 28 C 30 16.954305 38.954305 8 50 8 z M 50 14 C 42.268014 14 36 20.268014 36 28 C 36 35.731986 42.268014 42 50 42 C 57.731986 42 64 35.731986 64 28 C 64 20.268014 57.731986 14 50 14 z" fill="url(#logo-gradient)"></path>
+<path d="M50,40 L50,85 C50,85 85,80 85,65 C85,50 65,55 65,55 L65,45 L58,45 L58,58 C65.66,61.33 78,61.66 78,65 C78,68.33 69.33,76 50,78 L50,40z" fill="url(#logo-gradient)"></path>
+<path d="M50,40 L50,85 C50,85 15,80 15,65 C15,50 35,55 35,55 L35,45 L42,45 L42,58 C34.33,61.33 22,61.66 22,65 C22,68.33 30.66,76 50,78 L50,40z" fill="url(#logo-gradient)"></path>
+</svg>
+<h1 class="text-3xl font-bold text-slate-800">ANCLORA</h1>
+<p class="text-sm slogan-animated">Tu Ancla para la Productividad</p>
+</header>
+<!-- ===== Contenido Principal (Listas y creación) ===== -->
+<main class="grid grid-cols-1 md:grid-cols-3 gap-8 p-4 md:p-6">
+<!-- Columna Izquierda: Crear y Calendario -->
+<aside class="md:col-span-1 space-y-6">
+<section>
+<h2 class="text-2xl font-bold text-slate-800">¿Anclamos?</h2>
+<div class="mt-4 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-sm">
+<p class="text-slate-600">Crea nuevos anclajes para organizar tu día.</p>
+<button class="mt-3 w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors" id="add-task-btn">
+<svg class="h-5 w-5" fill="none" height="20" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+<span>Nuevo Anclaje</span>
+</button>
+</div>
+</section>
+</aside>
+<!-- Columna Derecha: Lista de Tareas -->
+<div class="md:col-span-2 space-y-6">
+<section id="active-tasks">
+<h2 class="text-2xl font-bold text-slate-800 mb-4">Anclajes Activos</h2>
+<div class="space-y-4">
+<div>
+<h3 class="font-bold text-slate-500 mb-2">Hoy</h3>
+<div class="space-y-3" id="today-task-list"></div>
+</div>
+<div>
+<h3 class="font-bold text-slate-500 mb-2 mt-6">Mañana</h3>
+<div class="space-y-3" id="tomorrow-task-list"></div>
+</div>
+<div>
+<h3 class="font-bold text-slate-500 mb-2 mt-6">Esta semana</h3>
+<div class="space-y-3" id="this-week-task-list"></div>
+</div>
+<div>
+<h3 class="font-bold text-slate-500 mb-2 mt-6">Próximamente</h3>
+<div class="space-y-3" id="upcoming-task-list"></div>
+</div>
+</div>
+</section>
+<section id="overdue-tasks">
+<h2 class="text-2xl font-bold text-slate-800 mb-4 mt-8">Anclajes Vencidos</h2>
+<div class="space-y-3" id="overdue-task-list"></div>
+</section>
+<section id="completed-tasks">
+<h2 class="text-2xl font-bold text-slate-800 mb-4 mt-8">Anclajes Completados</h2>
+<div class="space-y-3" id="completed-list"></div>
+</section>
+</div>
+</main>
+</div>
+<!-- ===== Panel Lateral para Añadir/Editar Anclaje ===== -->
+<div class="fixed inset-0 bg-black/30 backdrop-blur-sm z-[60] transition-opacity duration-300 opacity-0 pointer-events-none" id="sidebar-container">
+<div class="absolute top-0 right-0 h-full w-full max-w-md bg-slate-50 shadow-2xl transition-transform duration-300 transform translate-x-full overflow-y-auto" id="sidebar-content">
+<div class="flex flex-col h-full">
+<div class="p-4 border-b border-slate-200 flex justify-between items-center">
+<h3 class="text-lg font-bold" id="sidebar-title">Nuevo Anclaje</h3>
+<button class="text-slate-500 hover:text-slate-800 text-2xl" id="close-sidebar-btn">×</button>
+</div>
+<form class="p-4 space-y-6 flex-grow" id="task-form">
+<div>
+<label class="text-sm font-semibold text-slate-600 mb-1 block">Tipo</label>
+<select class="w-full p-2 border border-slate-300 rounded-md bg-white" id="type-select">
+<option value="task">Tarea</option>
+<option value="event">Evento</option>
+</select>
+</div>
+<div>
+<input class="w-full p-2 border border-slate-300 rounded-md" id="task-title" placeholder="Título" required="" type="text"/>
+</div>
+<div>
+<label class="text-sm font-semibold text-slate-600 mb-1 block">Prioridad</label>
+<select class="w-full p-2 border border-slate-300 rounded-md bg-white" id="task-priority">
+<option value="normal">Normal</option>
+<option value="important">Importante</option>
+<option value="urgent">Urgente</option>
+</select>
+</div>
+<div class="space-y-4 p-4 bg-slate-100 rounded-lg">
+<h4 class="font-semibold">Horario y Frecuencia</h4>
+<div class="flex items-center justify-between">
+<label for="all-day-toggle">Todo el día</label>
+<div class="relative inline-block w-10 mr-2 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" id="all-day-toggle" name="all-day-toggle" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" for="all-day-toggle"></label>
+</input></div>
+</div>
+<div id="timed-options">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="text-sm font-medium">Desde</label>
+<input class="w-full p-2 mt-1 border border-slate-300 rounded-md" id="start-date" type="date"/>
+</div>
+<div>
+<label class="text-sm font-medium">Hora</label>
+<input class="w-full p-2 mt-1 border border-slate-300 rounded-md" id="start-time" type="time"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-2" id="end-date-container">
+<div>
+<label class="text-sm font-medium">Hasta</label>
+<input class="w-full p-2 mt-1 border border-slate-300 rounded-md" id="end-date" type="date"/>
+</div>
+<div>
+<label class="text-sm font-medium">Hora</label>
+<input class="w-full p-2 mt-1 border border-slate-300 rounded-md" id="end-time" type="time"/>
+</div>
+</div>
+</div>
+<div class="hidden" id="all-day-options">
+<div class="grid grid-cols-1">
+<div>
+<label class="text-sm font-medium">Desde</label>
+<input class="w-full p-2 mt-1 border border-slate-300 rounded-md" id="all-day-start-date" type="date"/>
+</div>
+<div class="mt-2" id="all-day-end-date-container">
+<label class="text-sm font-medium">Hasta</label>
+<input class="w-full p-2 mt-1 border border-slate-300 rounded-md" id="all-day-end-date" type="date"/>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4 p-4 bg-slate-100 rounded-lg">
+<div class="flex items-center justify-between">
+<h4 class="font-semibold">Alerta</h4>
+<div class="relative inline-block w-10 mr-2 align-middle select-none">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" id="alert-toggle" name="alert-toggle" type="checkbox">
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer" for="alert-toggle"></label>
+</input></div>
+</div>
+<div class="hidden space-y-4" id="alert-options">
+<div class="space-y-3" id="notifications-list"></div>
+<button class="w-full text-sm bg-blue-100 text-blue-700 font-semibold py-2 px-3 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-200 transition-colors" id="add-notification-btn" type="button">
+<svg class="h-4 w-4" fill="none" height="16" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg>
+                                Añadir notificación
+                           </button>
+</div>
+</div>
+</form>
+<div class="p-4 border-t border-slate-200 flex justify-end gap-3">
+<button class="bg-slate-200 text-slate-700 font-bold py-2 px-4 rounded-lg hover:bg-slate-300" id="cancel-btn">Cancelar</button>
+<button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700" form="task-form" id="save-task-btn" type="submit">Guardar Anclaje</button>
+</div>
+</div>
+</div>
+</div>
+<template id="task-template">
+<div class="bg-white/80 backdrop-blur-sm p-3 rounded-xl flex items-center gap-4 shadow-sm border border-transparent transition-all hover:border-blue-500 hover:shadow-md">
+<div class="pl-1">
+<input class="complete-checkbox h-5 w-5 rounded-full border-2 border-slate-300 text-blue-600 focus:ring-blue-500 transition cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-grow">
+<p class="font-semibold text-slate-800 task-title">Título de la tarea</p>
+<p class="text-sm text-slate-500 task-due-date">Fecha de vencimiento</p>
+</div>
+<div class="priority-indicator text-xs font-bold px-2 py-1 rounded-full"></div>
+<div class="flex items-center">
+<button class="reuse-btn hidden text-slate-400 hover:text-blue-500 transition-colors p-1 rounded-full">
+<svg class="h-5 w-5" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+</button>
+<button class="edit-btn text-slate-400 hover:text-blue-500 transition-colors p-1 rounded-full">
+<svg class="h-5 w-5" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+</button>
+<button class="delete-btn text-slate-400 hover:text-red-500 transition-colors p-1 rounded-full">
+<svg class="h-5 w-5" fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+</button>
+</div>
+</div>
+</template>
+<template id="completed-task-template">
+<div class="bg-white/50 backdrop-blur-sm p-3 rounded-xl flex items-center gap-4 opacity-70">
+<div class="pl-1">
+<svg class="text-green-500" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5l1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"></path></svg>
+</div>
+<div class="flex-grow">
+<p class="font-medium text-slate-500 line-through task-title">Tarea completada</p>
+</div>
+<div class="flex items-center">
+<button class="reuse-btn text-slate-400 hover:text-blue-500 transition-colors p-1 rounded-full">
+<svg class="h-5 w-5" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+</button>
+<button class="delete-btn text-slate-400 hover:text-red-500 transition-colors p-1 rounded-full">
+<svg class="h-5 w-5" fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+</button>
+</div>
+</div>
+</template>
+<template id="notification-row-template">
+<div class="notification-row bg-white p-2 rounded-lg">
+<div class="flex items-center gap-2">
+<div class="alert-timed-options flex-grow">
+<select class="w-full p-2 border border-slate-300 rounded-md bg-white" data-type="timed-select">
+<option value="event-time">A la hora del evento</option>
+<option value="5-min">5 minutos antes</option>
+<option value="10-min">10 minutos antes</option>
+<option value="15-min">15 minutos antes</option>
+<option value="1-hour">1 hora antes</option>
+</select>
+</div>
+<div class="alert-all-day-options hidden flex-grow space-y-2 text-sm">
+<div class="flex items-center gap-2">
+<select class="p-1 border border-slate-300 rounded-md text-sm" data-type="allday-day-select">
+<option value="0">Día del evento</option>
+<option value="1">Día antes</option>
+<option value="2">2 días antes</option>
+</select>
+<span>a las</span>
+<input class="p-1 border border-slate-300 rounded-md" data-type="allday-time-input" type="time" value="09:00"/>
+</div>
+</div>
+<button class="remove-notification-btn text-slate-400 hover:text-red-500 p-1" type="button">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</template>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
 
-  <section class="benefits">
-    <h2>Beneficios</h2>
-    <p>Descubre la claridad de una rutina visual, con un sistema que te permite fluir como el mar: ordenado, simple y potente.</p>
-  </section>
+    let editingTaskId = null;
+    let reusedTaskId = null;
+    let tasks = [
+        { id: 1, title: 'Cita con el veterinario', type: 'event', isAllDay: false, startDate: '2025-06-26T10:30', endDate: '2025-06-26T11:30', priority: 'urgent', notifications: [{type: 'timed', value: '15-min'}], isComplete: false },
+        { id: 2, title: 'Reunión de equipo', type: 'event', isAllDay: false, startDate: '2025-06-26T15:00', endDate: '2025-06-26T16:00', priority: 'important', notifications: [], isComplete: false },
+        { id: 3, title: 'Comprar leche y pan', type: 'task', isAllDay: true, startDate: '2025-06-27', endDate: '2025-06-27', priority: 'normal', notifications: [{type: 'all-day', day: '0', time: '09:00'}], isComplete: false },
+        { id: 4, title: 'Revisión del proyecto final', type: 'task', isAllDay: true, startDate: '2025-06-25', endDate: '2025-06-25', priority: 'urgent', notifications: [], isComplete: true },
+        { id: 5, title: 'Llamar al gestor', type: 'task', isAllDay: false, startDate: '2025-06-24T12:00', endDate: '2025-06-24T12:00', priority: 'normal', notifications: [], isComplete: false },
+        { id: 6, title: 'Ir al cine', type: 'event', isAllDay: false, startDate: '2025-06-28T19:00', endDate: '2025-06-28T21:00', priority: 'normal', notifications: [], isComplete: false },
+        { id: 7, title: 'Planificar vacaciones', type: 'task', isAllDay: true, startDate: '2025-07-15', endDate: '2025-07-15', priority: 'normal', notifications: [], isComplete: false },
+    ];
+    
+    const addTaskBtn = document.getElementById('add-task-btn');
+    const sidebarContainer = document.getElementById('sidebar-container');
+    const sidebarContent = document.getElementById('sidebar-content');
+    const closeSidebarBtn = document.getElementById('close-sidebar-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    const taskForm = document.getElementById('task-form');
+    const sidebarTitle = document.getElementById('sidebar-title');
+    const saveTaskBtn = document.getElementById('save-task-btn');
+    const todayTaskList = document.getElementById('today-task-list');
+    const tomorrowTaskList = document.getElementById('tomorrow-task-list');
+    const thisWeekTaskList = document.getElementById('this-week-task-list');
+    const upcomingTaskList = document.getElementById('upcoming-task-list');
+    const overdueTaskList = document.getElementById('overdue-task-list');
+    const completedList = document.getElementById('completed-list');
+    const taskTemplate = document.getElementById('task-template');
+    const completedTaskTemplate = document.getElementById('completed-task-template');
+    const notificationRowTemplate = document.getElementById('notification-row-template');
+    const typeSelect = document.getElementById('type-select');
+    const allDayToggle = document.getElementById('all-day-toggle');
+    const endDateContainer = document.getElementById('end-date-container');
+    const allDayEndDateContainer = document.getElementById('all-day-end-date-container');
+    const alertToggle = document.getElementById('alert-toggle');
+    const alertOptionsContainer = document.getElementById('alert-options');
+    const notificationsList = document.getElementById('notifications-list');
+    const addNotificationBtn = document.getElementById('add-notification-btn');
+    const animationOverlay = document.getElementById('animation-overlay');
+    const bubblesContainer = document.getElementById('bubbles-container');
 
-  <section class="testimonials">
-    <h2>Testimonios</h2>
-    <p><em>“Desde que uso Anclora, mis mañanas son más ligeras y mis días más productivos.”</em> – Laura P.</p>
-  </section>
+    function formatDateToYYYYMMDD(date) { return date.toISOString().split('T')[0]; }
+    function formatTimeToHHMM(date) { return date.toTimeString().split(' ')[0].substring(0, 5); }
+    function getTodayDateString() { return formatDateToYYYYMMDD(new Date()); }
+    function getTomorrowDateString() {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return formatDateToYYYYMMDD(tomorrow);
+    }
+    function getWeekStart(date) {
+        const d = new Date(date);
+        const day = d.getDay();
+        const diff = d.getDate() - day + (day === 0 ? -6 : 1); 
+        return new Date(d.setDate(diff));
+    }
+    function getWeekEnd(date) {
+        const d = new Date(date);
+        const startOfWeek = getWeekStart(d);
+        startOfWeek.setDate(startOfWeek.getDate() + 6);
+        return startOfWeek;
+    }
 
-  <footer>
-    © Anclora 2025 &middot; <a href="#" style="color: inherit; text-decoration: underline;">GitHub</a>
-  </footer>
+    const renderTasks = () => {
+        todayTaskList.innerHTML = '';
+        tomorrowTaskList.innerHTML = '';
+        thisWeekTaskList.innerHTML = '';
+        upcomingTaskList.innerHTML = '';
+        overdueTaskList.innerHTML = '';
+        completedList.innerHTML = '';
+        
+        const now = new Date();
+        now.setHours(0, 0, 0, 0);
+        const todayStr = getTodayDateString();
+        const tomorrowStr = getTomorrowDateString();
+        const weekEnd = getWeekEnd(now);
+        weekEnd.setHours(23, 59, 59, 999);
+
+        tasks.sort((a, b) => new Date(a.startDate) - new Date(b.startDate)).forEach(task => {
+            const taskEndDate = new Date(task.isAllDay ? task.endDate + 'T23:59:59' : task.endDate);
+            const taskStartDate = new Date(task.startDate.split('T')[0]);
+            
+            if (task.isComplete) {
+                completedList.appendChild(createCompletedTaskElement(task));
+            } else if (taskEndDate < now) {
+                overdueTaskList.appendChild(createTaskElement(task, { isOverdue: true }));
+            } else {
+                 const taskDateStr = task.startDate.split('T')[0];
+                if (taskDateStr === todayStr) {
+                    todayTaskList.appendChild(createTaskElement(task, {isOverdue: false}));
+                } else if (taskDateStr === tomorrowStr) {
+                    tomorrowTaskList.appendChild(createTaskElement(task, {isOverdue: false}));
+                } else if (taskStartDate > new Date(tomorrowStr) && taskStartDate <= weekEnd) {
+                    thisWeekTaskList.appendChild(createTaskElement(task, {isOverdue: false}));
+                } else {
+                    upcomingTaskList.appendChild(createTaskElement(task, {isOverdue: false}));
+                }
+            }
+        });
+        checkEmptyLists();
+    };
+    
+    const checkEmptyLists = () => {
+        if (!todayTaskList.hasChildNodes()) todayTaskList.innerHTML = `<p class="text-sm text-slate-400 p-3 bg-white/50 backdrop-blur-sm rounded-lg">No tienes anclajes para hoy.</p>`;
+        if (!tomorrowTaskList.hasChildNodes()) tomorrowTaskList.innerHTML = `<p class="text-sm text-slate-400 p-3 bg-white/50 backdrop-blur-sm rounded-lg">No tienes anclajes para mañana.</p>`;
+        if (!thisWeekTaskList.hasChildNodes()) thisWeekTaskList.innerHTML = `<p class="text-sm text-slate-400 p-3 bg-white/50 backdrop-blur-sm rounded-lg">No tienes anclajes para esta semana.</p>`;
+        if (!upcomingTaskList.hasChildNodes()) upcomingTaskList.innerHTML = `<p class="text-sm text-slate-400 p-3 bg-white/50 backdrop-blur-sm rounded-lg">No tienes anclajes próximamente.</p>`;
+        if (!overdueTaskList.hasChildNodes()) overdueTaskList.innerHTML = `<p class="text-sm text-slate-400 p-3 bg-white/50 backdrop-blur-sm rounded-lg">No tienes anclajes vencidos.</p>`;
+        if (!completedList.hasChildNodes()) completedList.innerHTML = `<p class="text-sm text-slate-400 p-3 bg-white/50 backdrop-blur-sm rounded-lg">Aún no has completado anclajes.</p>`;
+    };
+
+    const createTaskElement = (task, context = {}) => {
+        const clone = taskTemplate.content.cloneNode(true);
+        const taskCard = clone.querySelector('.bg-white\\/80');
+        taskCard.dataset.taskId = task.id;
+
+        clone.querySelector('.task-title').textContent = task.title;
+        clone.querySelector('.task-due-date').textContent = formatTaskDate(task);
+        
+        const priorityIndicator = clone.querySelector('.priority-indicator');
+        const priorityStyles = {
+            urgent: { text: 'Urgente', bg: 'bg-red-100', text_color: 'text-red-700' },
+            important: { text: 'Importante', bg: 'bg-yellow-100', text_color: 'text-yellow-700' },
+            normal: { text: 'Normal', bg: 'bg-green-100', text_color: 'text-green-700' }
+        };
+        const style = priorityStyles[task.priority] || priorityStyles.normal;
+        priorityIndicator.textContent = style.text;
+        priorityIndicator.classList.add(style.bg, style.text_color);
+
+        const reuseBtn = clone.querySelector('.reuse-btn');
+        if (context.isOverdue) {
+            reuseBtn.classList.remove('hidden');
+            reuseBtn.addEventListener('click', () => handleReuseTask(task.id));
+        }
+
+        clone.querySelector('.complete-checkbox').addEventListener('change', () => toggleCompleteTask(task.id));
+        clone.querySelector('.edit-btn').addEventListener('click', () => handleEditTask(task.id));
+        clone.querySelector('.delete-btn').addEventListener('click', () => deleteTask(task.id));
+        return clone;
+    };
+    
+    const createCompletedTaskElement = (task) => {
+        const clone = completedTaskTemplate.content.cloneNode(true);
+        clone.querySelector('.task-title').textContent = task.title;
+        clone.querySelector('.reuse-btn').addEventListener('click', () => handleReuseTask(task.id));
+        clone.querySelector('.delete-btn').addEventListener('click', () => deleteTask(task.id));
+        return clone;
+    };
+
+    const openSidebar = (mode = 'create', data = null) => {
+        taskForm.reset();
+        editingTaskId = null;
+        reusedTaskId = null;
+        
+        if (mode === 'create') {
+            sidebarTitle.textContent = 'Nuevo Anclaje';
+            saveTaskBtn.textContent = 'Guardar Anclaje';
+            updateDateTimeDefaults();
+        } else if (mode === 'edit') {
+            editingTaskId = data.id;
+            sidebarTitle.textContent = 'Editar Anclaje';
+            saveTaskBtn.textContent = 'Guardar Cambios';
+            populateSidebar(data);
+        } else if (mode === 'reuse') {
+            reusedTaskId = data.id;
+            sidebarTitle.textContent = 'Reutilizar Anclaje';
+            saveTaskBtn.textContent = 'Guardar Anclaje';
+            populateSidebar(data);
+            updateDateTimeDefaults();
+        }
+        
+        updateFormVisibility();
+        sidebarContainer.classList.remove('opacity-0', 'pointer-events-none');
+        sidebarContent.classList.remove('translate-x-full');
+    };
+
+    const populateSidebar = (task) => {
+        typeSelect.value = task.type;
+        document.getElementById('task-title').value = task.title;
+        document.getElementById('task-priority').value = task.priority;
+        allDayToggle.checked = task.isAllDay;
+        
+        if (task.isAllDay) {
+            document.getElementById('all-day-start-date').value = task.startDate;
+            document.getElementById('all-day-end-date').value = task.endDate;
+        } else {
+            const [startDate, startTime] = task.startDate.split('T');
+            const [endDate, endTime] = task.endDate.split('T');
+            document.getElementById('start-date').value = startDate;
+            document.getElementById('start-time').value = startTime || '';
+            document.getElementById('end-date').value = endDate;
+            document.getElementById('end-time').value = endTime || '';
+        }
+
+        alertToggle.checked = task.notifications.length > 0;
+        resetNotifications();
+        if (alertToggle.checked) {
+            task.notifications.forEach(notification => addNotificationRow(notification));
+        }
+    };
+    
+    const handleEditTask = (id) => {
+        const taskToEdit = tasks.find(t => t.id === id);
+        if (taskToEdit) openSidebar('edit', taskToEdit);
+    };
+
+    const handleReuseTask = (id) => {
+        const taskToReuse = tasks.find(t => t.id === id);
+        if (taskToReuse) openSidebar('reuse', taskToReuse);
+    };
+
+    const closeSidebar = () => {
+        editingTaskId = null;
+        reusedTaskId = null;
+        sidebarContainer.classList.add('opacity-0', 'pointer-events-none');
+        sidebarContent.classList.add('translate-x-full');
+    };
+
+    const handleSaveTask = (e) => {
+        e.preventDefault();
+        const formData = getFormData();
+        if (!formData) return;
+
+        if (reusedTaskId !== null) {
+            tasks = tasks.filter(t => t.id !== reusedTaskId);
+        }
+
+        if (editingTaskId !== null) {
+            const taskIndex = tasks.findIndex(t => t.id === editingTaskId);
+            if(taskIndex > -1) tasks[taskIndex] = { ...tasks[taskIndex], ...formData };
+        } else {
+            tasks.push({ ...formData, id: Date.now(), isComplete: false });
+        }
+
+        renderTasks();
+        closeSidebar();
+    };
+    
+    const getFormData = () => {
+        const type = typeSelect.value;
+        const title = document.getElementById('task-title').value.trim();
+        if (!title) return null;
+
+        const priority = document.getElementById('task-priority').value;
+        const isAllDay = allDayToggle.checked;
+
+        let startDate, endDate;
+        if (isAllDay) {
+            startDate = document.getElementById('all-day-start-date').value;
+            endDate = (type === 'task') ? startDate : document.getElementById('all-day-end-date').value;
+        } else {
+            const startDateValue = document.getElementById('start-date').value;
+            const startTimeValue = document.getElementById('start-time').value;
+            if (!startTimeValue) {
+                showToast('La hora de inicio es obligatoria para anclajes con hora específica.');
+                return null;
+            }
+            startDate = `${startDateValue}T${startTimeValue}`;
+            endDate = (type === 'task') ? startDate : `${document.getElementById('end-date').value}T${document.getElementById('end-time').value}`;
+        }
+        
+        if (!startDate || (type === 'event' && !endDate) || (type === 'event' && new Date(endDate) < new Date(startDate))) {
+             showToast('La fecha de fin no puede ser anterior a la de inicio.');
+             return null;
+        }
+        
+        const notifications = [];
+        if (alertToggle.checked) {
+            const notificationIdentifiers = new Set();
+            for (const row of document.querySelectorAll('.notification-row')) {
+                const identifier = getNotificationIdentifier(row);
+                if (notificationIdentifiers.has(identifier)) {
+                    showToast('No puedes guardar con notificaciones duplicadas.');
+                    return null;
+                }
+                notificationIdentifiers.add(identifier);
+                notifications.push(getNotificationDataFromRow(row));
+            }
+        }
+        
+        return { type, title, isAllDay, startDate, endDate, priority, notifications };
+    };
+    
+    const toggleCompleteTask = (id) => {
+        const taskIndex = tasks.findIndex(t => t.id === id);
+        if(taskIndex > -1) tasks[taskIndex].isComplete = !tasks[taskIndex].isComplete;
+        renderTasks();
+    };
+    
+    const deleteTask = (id) => {
+        tasks = tasks.filter(task => task.id !== id);
+        renderTasks();
+    };
+
+    const formatTaskDate = (task) => {
+        const isTask = task.type === 'task';
+        const options = { weekday: 'long', day: 'numeric', month: 'long' };
+        if (task.isAllDay) {
+            const startDate = new Date(task.startDate + 'T00:00');
+            const endDate = new Date(task.endDate + 'T00:00');
+            if (isTask || task.startDate === task.endDate) return `${startDate.toLocaleDateString('es-ES', options)}`;
+            return `Del ${startDate.toLocaleDateString('es-ES', {day:'numeric', month: 'short'})} al ${endDate.toLocaleDateString('es-ES', {day:'numeric', month: 'short'})}`;
+        } 
+        
+        const startTime = new Date(task.startDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+        if (isTask) return startTime;
+
+        const endTime = new Date(task.endDate).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+        return `${startTime} a ${endTime}`;
+    };
+
+    const showToast = (message) => {
+        const toast = document.createElement('div');
+        toast.textContent = message;
+        toast.className = 'toast-notification';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.classList.add('show'), 10);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            toast.addEventListener('transitionend', () => toast.remove());
+        }, 3000);
+    };
+
+    const getNotificationIdentifier = (row) => {
+        const isAllDay = allDayToggle.checked;
+        if (isAllDay) {
+            const day = row.querySelector('[data-type="allday-day-select"]').value;
+            const time = row.querySelector('[data-type="allday-time-input"]').value;
+            return `allday-${day}-${time}`;
+        }
+        return `timed-${row.querySelector('[data-type="timed-select"]').value}`;
+    };
+
+    const addNotificationRow = (notification = null) => {
+        const clone = notificationRowTemplate.content.cloneNode(true);
+        const row = clone.querySelector('.notification-row');
+        const isAllDay = allDayToggle.checked;
+
+        row.querySelector('.alert-timed-options').classList.toggle('hidden', isAllDay);
+        row.querySelector('.alert-all-day-options').classList.toggle('hidden', !isAllDay);
+        
+        if (notification) {
+            if (notification.type === 'timed') row.querySelector('[data-type="timed-select"]').value = notification.value;
+            else if (notification.type === 'all-day') {
+                row.querySelector('[data-type="allday-day-select"]').value = notification.day;
+                row.querySelector('[data-type="allday-time-input"]').value = notification.time;
+            }
+        }
+        
+        clone.querySelector('.remove-notification-btn').addEventListener('click', () => row.remove());
+        notificationsList.appendChild(clone);
+    };
+
+    const getNotificationDataFromRow = (row) => {
+        const isAllDay = allDayToggle.checked;
+        if (isAllDay) return { type: 'all-day', day: row.querySelector('[data-type="allday-day-select"]').value, time: row.querySelector('[data-type="allday-time-input"]').value };
+        return { type: 'timed', value: row.querySelector('[data-type="timed-select"]').value };
+    };
+
+    const resetNotifications = () => { notificationsList.innerHTML = ''; };
+
+    const updateFormVisibility = () => {
+        const isTaskType = typeSelect.value === 'task';
+        const isAllDay = allDayToggle.checked;
+        const isAlertActive = alertToggle.checked;
+
+        endDateContainer.classList.toggle('hidden', isTaskType);
+        allDayEndDateContainer.classList.toggle('hidden', isTaskType);
+        alertOptionsContainer.classList.toggle('hidden', !isAlertActive);
+        
+        if (isAlertActive && notificationsList.children.length === 0) addNotificationRow();
+        else if (!isAlertActive) resetNotifications();
+
+        document.querySelectorAll('.notification-row').forEach(row => {
+            row.querySelector('.alert-timed-options').classList.toggle('hidden', isAllDay);
+            row.querySelector('.alert-all-day-options').classList.toggle('hidden', !isAllDay);
+        });
+    };
+
+    const updateDateTimeDefaults = () => {
+        const now = new Date();
+        const nextHour = new Date(now);
+        nextHour.setHours(now.getHours() + 1, 0, 0, 0);
+        const oneHourLater = new Date(nextHour);
+        oneHourLater.setHours(nextHour.getHours() + 1);
+        const todayStr = formatDateToYYYYMMDD(now);
+        
+        document.getElementById('start-date').value = todayStr;
+        document.getElementById('end-date').value = todayStr;
+        document.getElementById('start-time').value = formatTimeToHHMM(nextHour);
+        document.getElementById('end-time').value = formatTimeToHHMM(oneHourLater);
+        document.getElementById('all-day-start-date').value = todayStr;
+        document.getElementById('all-day-end-date').value = todayStr;
+    };
+    
+    const playNewAnchorAnimation = (callback) => {
+        const overlay = document.getElementById('animation-overlay');
+        const container = document.getElementById('anchor-container');
+        const bubbles = document.getElementById('bubbles-container');
+        
+        overlay.classList.remove('hidden');
+        overlay.classList.add('is-animating');
+        bubbles.innerHTML = '';
+
+        for(let i = 0; i < 25; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = `${Math.random() * 20 + 5}px`;
+            bubble.style.width = size;
+            bubble.style.height = size;
+            bubble.style.left = `${Math.random() * 100}%`;
+            bubble.style.animationDelay = `${Math.random() * 2.5}s`;
+            bubble.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            bubbles.appendChild(bubble);
+        }
+
+        setTimeout(() => {
+            overlay.classList.remove('is-animating');
+            overlay.classList.add('hidden');
+            if(callback) callback();
+        }, 2200); // Duración de la animación
+    };
+
+    // ===== EVENT LISTENERS =====
+    addTaskBtn.addEventListener('click', () => {
+        playNewAnchorAnimation(() => {
+            openSidebar('create');
+        });
+    });
+    closeSidebarBtn.addEventListener('click', closeSidebar);
+    cancelBtn.addEventListener('click', closeSidebar);
+    sidebarContainer.addEventListener('click', (e) => { if (e.target === sidebarContainer) closeSidebar(); });
+    taskForm.addEventListener('submit', handleSaveTask);
+    
+    typeSelect.addEventListener('change', updateFormVisibility);
+    allDayToggle.addEventListener('change', updateFormVisibility);
+    alertToggle.addEventListener('change', updateFormVisibility);
+    addNotificationBtn.addEventListener('click', addNotificationRow);
+
+    // ===== INICIALIZACIÓN =====
+    renderTasks();
+});
+</script>
+<div id="completion-effect-container"></div>
+<style>
+@keyframes checkmark-pop {
+  0% { transform: scale(0.2); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.task-complete-effect {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  pointer-events: none;
+  background-color: rgba(255,255,255,0.9);
+  padding: 2rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: checkmark-pop 0.6s ease-out;
+}
+.task-complete-effect svg {
+  width: 60px;
+  height: 60px;
+  color: #10b981;
+}
+</style>
+<script>
+function showTaskCompleteEffect() {
+  const container = document.getElementById('completion-effect-container');
+  const effect = document.createElement('div');
+  effect.className = 'task-complete-effect';
+  effect.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>`;
+  container.appendChild(effect);
+  setTimeout(() => effect.remove(), 1200);
+}
+</script>
 </body>
 </html>
